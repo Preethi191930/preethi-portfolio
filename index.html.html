@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preethi K — AI Engineer & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d1b2a;
+    --ink-2: #2c3e50;
+    --ink-3: #6b7f96;
+    --paper: #f7f9fb;
+    --surface: #eef2f7;
+    --accent: #1a4f8a;
+    --accent-soft: #e3ecf7;
+    --teal: #155e63;
+    --teal-soft: #e0f2f3;
+    --border: rgba(13,27,42,0.1);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(247,249,251,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 18px; color: var(--ink);
+    text-decoration: none; letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--ink-2); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 80px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .hero-name .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 12px 24px; border-radius: 100px;
+    text-decoration: none; font-size: 14px; font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline {
+    border: 1.5px solid var(--border); color: var(--ink-2);
+    padding: 12px 24px; border-radius: 100px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-contact {
+    margin-top: 2rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    font-size: 13px; color: var(--ink-3);
+  }
+  .hero-contact a { color: var(--ink-3); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .hero-contact a:hover { color: var(--accent); }
+  .hero-contact svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700; letter-spacing: -0.5px;
+    color: var(--ink); margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 5rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text { font-size: 1rem; color: var(--ink-2); line-height: 1.8; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: var(--ink-3); }
+
+  /* EDUCATION */
+  .edu-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--accent);
+    border-radius: 4px 0 0 4px;
+  }
+  .edu-degree {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .edu-school { font-size: 0.95rem; color: var(--ink-2); margin-bottom: 8px; }
+  .edu-year {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 12px;
+  }
+  .edu-courses { font-size: 13px; color: var(--ink-3); line-height: 1.7; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+  .skill-group {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem;
+  }
+  .skill-group-title {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--accent);
+    margin-bottom: 0.85rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .skill-group-title svg { width: 14px; height: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; background: var(--surface);
+    color: var(--ink-2); padding: 4px 10px;
+    border-radius: 100px; font-weight: 500;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; gap: 1.25rem; }
+  .project-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem 1.75rem;
+    transition: box-shadow 0.2s;
+  }
+  .project-card:hover { box-shadow: 0 4px 20px rgba(92,59,255,0.08); }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 600; color: var(--ink);
+  }
+  .project-desc { font-size: 14px; color: var(--ink-2); line-height: 1.75; margin-bottom: 1rem; }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-pill {
+    font-size: 11px; font-weight: 600;
+    background: var(--teal-soft); color: var(--teal);
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* CERTIFICATIONS */
+  .cert-list { display: grid; gap: 0.75rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem 1.25rem;
+  }
+  .cert-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cert-icon svg { width: 18px; height: 18px; color: var(--accent); }
+  .cert-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .contact-card {
+    background: #fff; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 20px; height: 20px; }
+  .contact-label { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .contact-value { font-size: 14px; font-weight: 500; color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 13px; color: var(--ink-3);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-name { letter-spacing: -1px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">PK<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Open to work · AI Engineer & Data Analyst</div>
+  <h1 class="hero-name">Preethi <span class="accent">K.</span></h1>
+  <p class="hero-sub">
+    B.Sc. Computer Science (AI) graduate with hands-on experience in data preprocessing, anomaly detection, model evaluation, and AI-powered automation. Eager to contribute as a fresher in data or AI roles.
+  </p>
+  <div class="hero-cta-row">
+    <a href="#projects" class="btn-primary">View My Projects</a>
+    <a href="#contact" class="btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-contact">
+    <a href="mailto:preethi191930@gmail.com">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 4 8 8 8-8"/></svg>
+      preethi191930@gmail.com
+    </a>
+    <a href="tel:+918428753303">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      +91 84287 53303
+    </a>
+    <a href="https://linkedin.com/in/preethi-k19" target="_blank">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg>
+      linkedin.com/in/preethi-k19
+    </a>
+    <span>
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2z"/><path d="M12 2v14M2 12h20M4.9 4.9a9.9 9.9 0 0 1 14.2 0M4.9 19.1a9.9 9.9 0 0 0 14.2 0"/></svg>
+      Coimbatore, Tamil Nadu
+    </span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a fresh graduate in B.Sc. Computer Science with specialization in Artificial Intelligence from PSGR Krishnammal College for Women, Coimbatore.</p>
+      <br>
+      <p>Through academic projects, I've built experience in Python, SQL, machine learning pipelines, and working with AI APIs and tools. I enjoy exploring how AI can solve real-world problems — from detecting plant diseases with CNNs to automating workflows with AI voice APIs.</p>
+      <br>
+      <p>I'm actively seeking my first opportunity as an <strong>AI Engineer</strong> or <strong>Data Analyst</strong> where I can grow, contribute, and continue learning.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Projects built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Certifications earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">AI tools mastered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">Graduating fresher</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic background</h2>
+  <div class="edu-card">
+    <div class="edu-degree">B.Sc. Computer Science (Artificial Intelligence)</div>
+    <div class="edu-school">PSGR Krishnammal College for Women, Peelamedu, Coimbatore</div>
+    <div class="edu-year">2023 – 2026</div>
+    <div class="edu-courses">
+      <strong>Relevant Coursework:</strong> Machine Learning · Deep Learning · Python · SQL · Generative AI · Data Structures
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2 class="section-title">What I work with</h2>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <div class="skill-group-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m13 0h-3a2 2 0 0 0-2-2v-3"/></svg>
+        Programming
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+        Data & ML
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Data Cleaning</span>
+        <span class="tag">Classification</span>
+        <span class="tag">Feature Engineering</span>
+        <span class="tag">Anomaly Detection</span>
+        <span class="tag">Model Evaluation</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10M7 12h10M7 17h4"/></svg>
+        Libraries
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">LogBERT</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+        Database
+      </div>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">Joins</span>
+        <span class="tag">Aggregations</span>
+        <span class="tag">Basic Queries</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        AI Tools & Platforms
+      </div>
+      <div class="skill-tags">
+        <span class="tag">ChatGPT API</span>
+        <span class="tag">ElevenLabs</span>
+        <span class="tag">Pipedream</span>
+        <span class="tag">MCP Servers</span>
+        <span class="tag">Gamma AI</span>
+        <span class="tag">Canva AI</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">Things I've built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">AI-Based Plant Leaf Disease Detection</div>
+      </div>
+      <p class="project-desc">Trained a CNN classifier on a multi-class leaf disease dataset, handling preprocessing and class balancing. Evaluated performance using accuracy and standard metrics. Built a desktop interface using Tkinter for user-friendly interaction.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">CNN</span>
+        <span class="tech-pill">OpenCV</span>
+        <span class="tech-pill">Tkinter</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">AI-Based Log Intelligence for Root-Cause Prediction</div>
+      </div>
+      <p class="project-desc">Developed an AI system to analyse cloud logs and detect anomalies using LogBERT for log pattern understanding. Applied Isolation Forest and clustering to identify abnormal behaviour. Built a Streamlit UI for log file upload and failure prediction.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">LogBERT</span>
+        <span class="tech-pill">Isolation Forest</span>
+        <span class="tech-pill">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">AI Voice Call Automation System</div>
+      </div>
+      <p class="project-desc">Set up an automated notification workflow using Pipedream triggers and ElevenLabs for AI voice output. Worked with structured trigger data and API configurations as part of the end-to-end pipeline.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">MCP Servers</span>
+        <span class="tech-pill">ElevenLabs</span>
+        <span class="tech-pill">Pipedream</span>
+        <span class="tech-pill">Cursor IDE</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">AI-Powered Pitch-Ready Business Project</div>
+      </div>
+      <p class="project-desc">Used 10+ AI tools in a coordinated workflow to build a full business pitch package — including a pitch deck, promo video, and branding assets. Combined Gamma, Canva, Clipchamp, and ChatGPT for an end-to-end generative AI workflow.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">ChatGPT</span>
+        <span class="tech-pill">Gamma</span>
+        <span class="tech-pill">Canva</span>
+        <span class="tech-pill">Clipchamp</span>
+        <span class="tech-pill">10+ AI Tools</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">Tourist Website</div>
+      </div>
+      <p class="project-desc">Built a multi-page responsive tourism website with intuitive navigation across Home, Favourite Places, and Detailed View pages. Added responsive carousels and a clean, user-friendly design using Bootstrap.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">HTML</span>
+        <span class="tech-pill">CSS</span>
+        <span class="tech-pill">Bootstrap</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Certifications</div>
+  <h2 class="section-title">What I've earned</h2>
+  <div class="cert-list">
+
+    <div class="cert-item">
+      <div class="cert-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="cert-name">Introduction to Databases (SQL)</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="cert-name">AI Powered Pitch Ready Project Using 10+ AI Tools</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="cert-name">Generative AI Mega Workshop</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="cert-name">Build Your Own Responsive Website (HTML & CSS)</div>
+    </div>
+
+    <div class="cert-item">
+      <div class="cert-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      </div>
+      <div class="cert-name">MCP Project Using Pipedream, Cursor IDE & MCP Servers</div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's connect</h2>
+  <div class="contact-grid">
+
+    <a href="mailto:preethi191930@gmail.com" class="contact-card">
+      <div class="contact-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 4 8 8 8-8"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">preethi191930@gmail.com</div>
+      </div>
+    </a>
+
+    <a href="tel:+918428753303" class="contact-card">
+      <div class="contact-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 84287 53303</div>
+      </div>
+    </a>
+
+    <a href="https://linkedin.com/in/preethi-k19" target="_blank" class="contact-card">
+      <div class="contact-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">preethi-k19</div>
+      </div>
+    </a>
+
+    <div class="contact-card" style="cursor:default;">
+      <div class="contact-icon">
+        <svg fill="none" stroke="#1a4f8a" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2z"/><path d="M12 2v14M2 12h20M4.9 4.9a9.9 9.9 0 0 1 14.2 0M4.9 19.1a9.9 9.9 0 0 0 14.2 0"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Coimbatore, Tamil Nadu</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built with care · Preethi K · 2026</p>
+</footer>
+
+</body>
+</html>
